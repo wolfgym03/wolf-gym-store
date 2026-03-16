@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wolf.Gym Store</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f5f5f5;margin:0;padding:0}
+header{background:#111;color:#fff;text-align:center;padding:25px}
+h1{margin:10px 0}
+.logo img{width:120px}
+.products{display:flex;flex-wrap:wrap;justify-content:center;padding:30px;gap:25px}
+.product{background:#fff;padding:20px;border-radius:10px;text-align:center;width:260px;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
+.product img{width:100%;border-radius:10px}
+.product h2{margin:15px 0 10px}
+.product p{margin:5px 0}
+.order-btn{background:#111;color:#fff;border:none;padding:10px 20px;border-radius:5px;cursor:pointer;margin-top:10px}
+.order-btn:hover{background:#333}
+#orderForm{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);justify-content:center;align-items:center}
+#orderForm form{background:#fff;padding:20px;border-radius:10px;width:90%;max-width:400px}
+#orderForm label{display:block;margin:10px 0 5px}
+#orderForm input,#orderForm select,#orderForm textarea{width:100%;padding:8px;border-radius:5px;border:1px solid #ccc}
+.close-btn{float:right;cursor:pointer;font-size:20px}
+</style>
+</head>
+<body><header>
+<div class="logo">
+<img src="images/logo.png" alt="Wolf.Gym Logo">
+</div>
+<h1>Wolf.Gym Store</h1>
+<p>Compression T‑Shirts | ملابس رياضية عالية الجودة</p>
+</header><div class="products"><div class="product">
+<img src="images/tshirt1.png" alt="Tshirt1">
+<h2> Compression 1</h2>
+<p>السعر: 1600 دج </p>
+<button class="order-btn" onclick="openForm('Wolf Compression 1')">اطلب الآن</button>
+</div><div class="product">
+<img src="images/tshirt2.png" alt="Tshirt2">
+<h2> Compression 2</h2>
+<p>السعر: 1800 دج</p>
+<button class="order-btn" onclick="openForm('Wolf Compression 2')">اطلب الآن</button>
+</div><div class="product">
+<img src="images/tshirt3.png" alt="Tshirt3">
+<h2> Compression 3</h2>
+<p>السعر: 2200 دج</p>
+<button class="order-btn" onclick="openForm('Wolf Compression 3')">اطلب الآن</button>
+</div><div class="product">
+<img src="images/tshirt4.png" alt="Tshirt4">
+<h2> Compression 4</h2>
+<p>السعر: 2000 دج</p>
+<button class="order-btn" onclick="openForm('Wolf Compression 4')">اطلب الآن</button>
+</div></div><div id="orderForm">
+<form onsubmit="sendOrder(event)">
+<span class="close-btn" onclick="closeForm()">×</span>
+<h2>نموذج الطلب</h2><label>الاسم</label> <input type="text" id="name" required>
+
+<label>رقم الهاتف</label> <input type="text" id="phone" required>
+
+<label>المقاس</label> <select id="size" required>
+
+<option>S</option>
+<option>M</option>
+<option>L</option>
+<option>XL</option>
+</select><label>اللون</label> <select id="color" required>
+
+<option>أسود</option>
+<option>أبيض</option>
+</select><label>ملاحظات</label>
+
+<textarea id="notes"></textarea><button type="submit" class="order-btn">إرسال الطلب</button>
+
+</form>
+</div><script>
+let currentProduct=""
+
+function openForm(product){
+currentProduct=product
+document.getElementById("orderForm").style.display="flex"
+}
+
+function closeForm(){
+document.getElementById("orderForm").style.display="none"
+}
+
+function sendOrder(e){
+e.preventDefault()
+
+const name=document.getElementById("name").value
+const phone=document.getElementById("phone").value
+const size=document.getElementById("size").value
+const color=document.getElementById("color").value
+const notes=document.getElementById("notes").value
+
+const subject=`طلب جديد: ${currentProduct}`
+
+const body=`المنتج: ${currentProduct}%0Aالاسم: ${name}%0Aالهاتف: ${phone}%0Aالمقاس: ${size}%0Aاللون: ${color}%0Aملاحظات: ${notes}`
+
+window.location.href=`mailto:wolfgym03@gmail.com?subject=${subject}&body=${body}`
+
+closeForm()
+}
+</script></body>
+</html>
+</script></body>
+</html>
