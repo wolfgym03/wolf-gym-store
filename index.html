@@ -47,6 +47,10 @@ h1{margin:10px 0}
 <img src="images/Tshirt4.png" alt="Tshirt4">
 <h2> Compression 4</h2>
 <p>السعر: 2000 دج</p>
+  </div><div class="product">
+<img src="images/Oversized T-shirt.png" alt="Tshirt4">
+<h2> Oversized T-shirt </h2>
+<p>السعر: 2500 دج</p>
 <button class="order-btn" onclick="openForm('Compression 4')">اطلب الآن</button>
 </div></div><div id="orderForm">
 <form onsubmit="sendOrder(event)">
@@ -54,6 +58,8 @@ h1{margin:10px 0}
 <h2>نموذج الطلب</h2><label>الاسم</label> <input type="text" id="name" required>
 
 <label>رقم الهاتف</label> <input type="text" id="phone" required>
+
+<label>العنوان</label> <input type="text" id="address" required>
 
 <label>المقاس</label> <select id="size" required>
 
@@ -87,13 +93,14 @@ e.preventDefault()
 
 const name=document.getElementById("name").value
 const phone=document.getElementById("phone").value
+const address=document.getElementById("address").value
 const size=document.getElementById("size").value
 const color=document.getElementById("color").value
 const notes=document.getElementById("notes").value
 
 const subject=`طلب جديد: ${currentProduct}`
 
-const body=`المنتج: ${currentProduct}%0Aالاسم: ${name}%0Aالهاتف: ${phone}%0Aالمقاس: ${size}%0Aاللون: ${color}%0Aملاحظات: ${notes}`
+const body=`المنتج: ${currentProduct}%0Aالاسم: ${name}%0Aالهاتف: ${address}%0Aالعنوان: ${phone}%0Aالمقاس: ${size}%0Aاللون: ${color}%0Aملاحظات: ${notes}`
 
 window.location.href=`mailto:wolfgym03@gmail.com?subject=${subject}&body=${body}`
 
