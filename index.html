@@ -81,7 +81,14 @@ h1{margin:10px 0}
 <textarea id="notes"></textarea><button type="submit" class="order-btn">إرسال الطلب</button>
 
 </form>
-</div><script>
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+(function(){
+emailjs.init("4A8-lBrvqDcoYOcnr");
+})();
+
 let currentProduct=""
 
 function openForm(product){
@@ -103,15 +110,23 @@ const size=document.getElementById("size").value
 const color=document.getElementById("color").value
 const notes=document.getElementById("notes").value
 
-const subject=`طلب جديد: ${currentProduct}`
-
-const body=`المنتج: ${currentProduct}%0Aالاسم: ${name}%0Aالهاتف: ${address}%0Aالعنوان: ${phone}%0Aالمقاس: ${size}%0Aاللون: ${color}%0Aملاحظات: ${notes}`
-
-window.location.href=`mailto:wolfgym03@gmail.com?subject=${subject}&body=${body}`
+emailjs.send("service_k0hih4g","template_9z43t2v",{
+name: name,
+phone: phone,
+address: address,
+product: currentProduct,
+size: size,
+color: color,
+notes: notes
+}).then(function(){
+alert("تم إرسال الطلب بنجاح")
+closeForm()
+}, function(error){
+alert("حدث خطأ في الإرسال")
+})
 
 closeForm()
 }
-</script></body>
-</html>
-</script></body>
+  </script>
+</body>
 </html>
