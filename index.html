@@ -109,7 +109,36 @@ const address=document.getElementById("address").value
 const size=document.getElementById("size").value
 const color=document.getElementById("color").value
 const notes=document.getElementById("notes").value
+// 🛡️ Anti-Spam (منع الإرسال المتكرر)
+if(typeof window.lastSubmit === "undefined"){
+window.lastSubmit = 0
+}
 
+let now = Date.now()
+if(now - window.lastSubmit < 5000){
+alert("انتظر 5 ثواني قبل إرسال طلب آخر")
+return
+}
+window.lastSubmit = now
+
+// 🛡️ التحقق من البيانات
+if(!name || !phone || !address){
+alert("يرجى ملء جميع المعلومات")
+return
+}
+
+// 🛡️ منع إدخال روابط أو سبام
+if(name.includes("http") || notes.includes("http")){
+alert("ممنوع إدخال روابط")
+return
+}
+
+// 🛡️ تحقق من رقم الهاتف (أرقام فقط)
+if(!/^[0-9]{8,15}$/.test(phone)){
+alert("رقم الهاتف غير صحيح")
+return
+}
+  
 emailjs.send("service_k0hih4g","template_9z43t2v",{
 name: name,
 phone: phone,
