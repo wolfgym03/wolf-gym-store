@@ -22,67 +22,122 @@ h1{margin:10px 0}
 .close-btn{float:right;cursor:pointer;font-size:20px}
 </style>
 </head>
-<body><header>
+
+<body>
+
+<header>
 <div class="logo">
-<img src="images/logo.png" alt="Wolf.Gym Logo">
+<img src="images/logo.png">
 </div>
 <h1>Wolf.Gym Store</h1>
-<p>Compression T‑Shirts | ملابس رياضية عالية الجودة</p>
-</header><div class="products"><div class="product">
-<img src="images/Tshirt1.png" alt="Tshirt1">
+<p>Compression T-Shirts | ملابس رياضية عالية الجودة</p>
+</header>
+
+<!-- أزرار التنقل -->
+<div style="text-align:center;margin:20px">
+<button onclick="goToSection('men')" class="order-btn">رجال</button>
+<button onclick="goToSection('women')" class="order-btn">نساء</button>
+</div>
+
+<!-- قسم الرجال -->
+<h2 id="men" style="text-align:center;margin-top:20px">قسم الرجال</h2>
+
+<div class="products">
+
+<div class="product">
+<img src="images/tshirt1.png">
 <h2> Compression 1</h2>
 <p>السعر: 1600 دج </p>
 <button class="order-btn" onclick="openForm('Compression 1')">اطلب الآن</button>
-</div><div class="product">
-<img src="images/Tshirt2.png" alt="Tshirt2">
+</div>
+
+<div class="product">
+<img src="images/tshirt2.png">
 <h2> Compression 2</h2>
 <p>السعر: 1800 دج</p>
 <button class="order-btn" onclick="openForm('Compression 2')">اطلب الآن</button>
-</div><div class="product">
-<img src="images/Tshirt3.png" alt="Tshirt3">
+</div>
+
+<div class="product">
+<img src="images/tshirt3.png">
 <h2> Compression 3</h2>
 <p>السعر: 2200 دج</p>
-<button class="order-btn" onclick="openForm('Compression 3')">اطلب الآن</button>
-</div><div class="product">
-<img src="images/Tshirt4.png" alt="Tshirt4">
+<button class="order-btn" disabled style="background:#999;cursor:not-allowed">غير متوفر</button>
+</div>
+
+<div class="product">
+<img src="images/tshirt4.png">
 <h2> Compression 4</h2>
 <p>السعر: 1990 دج</p>
-  </div><div class="product">
-<img src="images/Tshirt5.png" alt="Tshirt5">
+<button class="order-btn" disabled style="background:#999;cursor:not-allowed">غير متوفر</button>
+</div>
+
+<div class="product">
+<img src="images/tshirt5.png">
 <h2> Compression 5</h2>
 <p>السعر: 1990 دج</p>
-<button class="order-btn" onclick="openForm('Compression 5')">اطلب الآن</button>
-  </div><div class="product">
-<img src="images/Oversized T-shirt.png" alt="Tshirt4">
+<button class="order-btn" disabled style="background:#999;cursor:not-allowed">غير متوفر</button>
+</div>
+
+<div class="product">
+<img src="images/Oversized T-shirt.png">
 <h2> Oversized T-shirt </h2>
 <p>السعر: 2500 دج</p>
-<button class="order-btn" onclick="openForm('Oversized T-shirt')">اطلب الآن</button>
-</div></div><div id="orderForm">
+<button class="order-btn" disabled style="background:#999;cursor:not-allowed">غير متوفر</button>
+</div>
+
+</div>
+
+<!-- قسم النساء -->
+<h2 id="women" style="text-align:center;margin-top:40px">قسم النساء</h2>
+
+<div class="products">
+
+<div class="product">
+<img src="images/define.png">
+<h2> Define Jacket </h2>
+<p>السعر: 1600 دج</p>
+<button class="order-btn" onclick="openForm('Define Jacket')">اطلب الآن</button>
+</div>
+
+</div>
+
+<!-- الفورم -->
+<div id="orderForm">
 <form onsubmit="sendOrder(event)">
 <span class="close-btn" onclick="closeForm()">×</span>
-<h2>نموذج الطلب</h2><label>الاسم</label> <input type="text" id="name" required>
 
-<label>رقم الهاتف</label> <input type="text" id="phone" required>
+<h2>نموذج الطلب</h2>
 
-<label>العنوان</label> <input type="text" id="address" required>
+<label>الاسم</label>
+<input type="text" id="name" required>
 
-<label>المقاس</label> <select id="size" required>
+<label>العنوان</label>
+<input type="text" id="address" required>
 
+<label>رقم الهاتف</label>
+<input type="text" id="phone" required>
+
+<label>المقاس</label>
+<select id="size" required>
 <option>S</option>
 <option>M</option>
 <option>L</option>
 <option>XL</option>
-</select><label>اللون</label> <select id="color" required>
+</select>
 
-<option>أسود</option>
-<option>أبيض</option>
-</select><label>ملاحظات</label>
+<label>اللون</label>
+<select id="color" required></select>
 
-<textarea id="notes"></textarea><button type="submit" class="order-btn">إرسال الطلب</button>
+<label>ملاحظات</label>
+<textarea id="notes"></textarea>
+
+<button type="submit" class="order-btn">إرسال الطلب</button>
 
 </form>
 </div>
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
 <script>
 (function(){
@@ -94,10 +149,29 @@ let currentProduct=""
 function openForm(product){
 currentProduct=product
 document.getElementById("orderForm").style.display="flex"
+
+let colorSelect = document.getElementById("color")
+colorSelect.innerHTML=""
+
+if(product === "Define Jacket"){
+colorSelect.innerHTML = `
+<option>أسود</option>
+<option>وردي</option>
+`
+}else{
+colorSelect.innerHTML = `
+<option>أسود</option>
+<option>أبيض</option>
+`
+}
 }
 
 function closeForm(){
 document.getElementById("orderForm").style.display="none"
+}
+
+function goToSection(id){
+document.getElementById(id).scrollIntoView({behavior:"smooth"})
 }
 
 function sendOrder(e){
@@ -109,53 +183,51 @@ const address=document.getElementById("address").value
 const size=document.getElementById("size").value
 const color=document.getElementById("color").value
 const notes=document.getElementById("notes").value
-// 🛡️ Anti-Spam (منع الإرسال المتكرر)
-if(typeof window.lastSubmit === "undefined"){
-window.lastSubmit = 0
+
+if(typeof window.lastSubmit==="undefined"){
+window.lastSubmit=0
 }
 
-let now = Date.now()
-if(now - window.lastSubmit < 5000){
+let now=Date.now()
+if(now-window.lastSubmit<5000){
 alert("انتظر 5 ثواني قبل إرسال طلب آخر")
 return
 }
-window.lastSubmit = now
+window.lastSubmit=now
 
-// 🛡️ التحقق من البيانات
-if(!name || !phone || !address){
+if(!name||!phone||!address){
 alert("يرجى ملء جميع المعلومات")
 return
 }
 
-// 🛡️ منع إدخال روابط أو سبام
-if(name.includes("http") || notes.includes("http")){
+if(name.includes("http")||notes.includes("http")){
 alert("ممنوع إدخال روابط")
 return
 }
 
-// 🛡️ تحقق من رقم الهاتف (أرقام فقط)
 if(!/^[0-9]{8,15}$/.test(phone)){
 alert("رقم الهاتف غير صحيح")
 return
 }
-  
+
 emailjs.send("service_k0hih4g","template_9z43t2v",{
-name: name,
-phone: phone,
-address: address,
-product: currentProduct,
-size: size,
-color: color,
-notes: notes
+name:name,
+phone:phone,
+address:address,
+product:currentProduct,
+size:size,
+color:color,
+notes:notes
 }).then(function(){
 alert("تم إرسال الطلب بنجاح")
 closeForm()
-}, function(error){
+},function(error){
 alert("حدث خطأ في الإرسال")
 })
 
 closeForm()
 }
-  </script>
+</script>
+
 </body>
 </html>
